@@ -82,10 +82,9 @@ namespace Escaperoom.Classes
             return beschrijving;
         }
 
-        public bool AddGroep(string Groep)
+        public int AddGroep(string Groep)
         {
-            bool check = false;
-            string query = "INSERT INTO Groep SELECT @Groepsnaam WHERE NOT EXISTS (SELECT * FROM Groep WHERE Groepsnaam = @Groepsnaam)";
+            string query = "INSERT INTO Groep OUTPUT INSERTED.ID SELECT @Groepsnaam WHERE NOT EXISTS (SELECT * FROM Groep WHERE Groepsnaam = @Groepsnaam)";
 
             con.Open();
 
@@ -95,28 +94,36 @@ namespace Escaperoom.Classes
             if (cmd.ExecuteNonQuery() == 0)
             {
                 con.Close();
-                return check;
+                return -1;
             }
             else
             {
+                Int32 newId = (Int32)cmd.ExecuteScalar();
                 con.Close();
-                check = true;
-                return check;
+                return newId;
             }
         }
 
         public void AddLeerling(string LeerlingNaam)
         {
-            string query = "INSERT INTO Leerling VALUES (@Leerlingnaam)";
+            string query = "INSERT INTO Leerling (Naam) VALUES (@Leerlingnaam)";
 
             con.Open();
 
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.Add("@Leerlingnaam", SqlDbType.VarChar).Value = LeerlingNaam;
 
-            cmd.ExecuteNonQuery();
+            int result = cmd.ExecuteNonQuery();
 
             con.Close();
+            // Check Error
+            if (result == 0)
+            MessageBox.Show("Error inserting data into Database!");
+        }
+
+        public void AddLeerlingToGroep(int leerling_id, int groep_id)
+        {
+
         }
 
         public List<Groep> GetGroepenLijst()

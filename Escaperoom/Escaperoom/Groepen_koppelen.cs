@@ -16,6 +16,7 @@ namespace Escaperoom
     {
         ConnectieDB database = new ConnectieDB();
         List<string> groep1 = new List<string>();
+        int groep_id;
 
         public Groepen_koppelen()
         {
@@ -24,13 +25,13 @@ namespace Escaperoom
 
         private void button1_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
+            // leerling toevoegen
             string name = deelnemerBox.Text;
-            groep1.Add(name);
-            foreach (string naam in groep1)
-            {
-                listBox1.Items.Add(naam);
-            }            
+            database.AddLeerling(name);
+            // leerling toevoegen aan groep
+            // database.AddLeerlingToGroep(leerling_id, this.groep_id);
+            // listbox verniewen
+            // get_leerlingen();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -48,8 +49,10 @@ namespace Escaperoom
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (database.AddGroep(groepnaamBox.Text) == true)
+            int groepId = database.AddGroep(groepnaamBox.Text);
+            if (groepId != -1)
             {
+                this.groep_id = groepId;
                 if (groep1.Count > 1)
                 {
                     foreach (string naam in groep1)
@@ -72,7 +75,7 @@ namespace Escaperoom
             {
                 MessageBox.Show("Voer een groepsnaam in.");
             }
-                       
+       
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -91,14 +94,26 @@ namespace Escaperoom
             lijstGroepen.ShowDialog();
             //Groep groep = lijstGroepen.groep;            
 
+            this.groep_id = lijstGroepen.id;
             string selectedNaam = lijstGroepen.item;
-
-            database.GetLeerlingenLijst(1);
-            List<Leerling> LeerlingenLijst = database.GetLeerlingenLijst(1);
-            listBox1.DataSource = new BindingSource(LeerlingenLijst, null);
-            listBox1.DisplayMember = "Naam";
-
             groepnaamBox.Text = selectedNaam;
+
+            get_leerlingen();
+        }
+
+        private void get_leerlingen()
+        {
+            if(groep_id.ToString() == "" )
+            {
+                MessageBox.Show("Geen groep geselecteerd");
+                
+            }
+            else
+            {
+                List<Leerling> LeerlingenLijst = database.GetLeerlingenLijst(this.groep_id);
+                listBox1.DataSource = new BindingSource(LeerlingenLijst, null);
+                listBox1.DisplayMember = "Naam";
+            }
         }
     }
 }

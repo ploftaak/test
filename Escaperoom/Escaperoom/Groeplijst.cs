@@ -32,7 +32,7 @@ namespace Escaperoom
 
             listBox1.DataSource = new BindingSource(lijstmetGroepen, null);
             listBox1.DisplayMember = "Naam";
-
+            listBox1.ValueMember = "GroepID";
             
             /*foreach (string groep in lijstmetGroepen)
             {
@@ -47,10 +47,11 @@ namespace Escaperoom
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+
             this.item = listBox1.GetItemText(listBox1.SelectedItem);
-            MessageBox.Show(id.ToString());
+            int.TryParse(listBox1.GetItemText(listBox1.SelectedValue), out this.id);
             //this.groep = new Groep(listBox1.SelectedItem.ToString());            
-            this.groep = new Groep(this.item);
             //Groep name = new Groep(listBox1.SelectedItem);
 
 
