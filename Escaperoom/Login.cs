@@ -46,29 +46,10 @@ namespace Escaperoom
 
                 ActiveControl = textBoxUsername;
 
-                Scenario form2 = new Scenario(this);
-                form2.ShowDialog();
+                Scenario scenarioForm = new Scenario(this);
+                scenarioForm.ShowDialog();
 
             }
         }
-        // voor eventueel als we form 2 willen koppelen met form 1.
-        /*
-        private static string username;
-
-        public static string Username
-        {
-            get { return username; }
-            set { username = value; }
-        }
-
-
-        private static string password;
-
-        public static string Password
-        {
-            get { return username; }
-            set { username = value; }
-        }
-        */
     }
 }

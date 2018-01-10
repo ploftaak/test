@@ -16,13 +16,15 @@ namespace Escaperoom.Classes
         private static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Application.StartupPath + @"\Database1.mdf;Integrated Security=True";
         private SqlConnection con = new SqlConnection(connectionString);
 
+        
         public int inlogcheck(string username, string password)
         {
+
             int check = 0;
             //Maak query.
             // string query = "SELECT User FROM userid WHERE Username '" + gebruikersnaam + "' AND password'" + wachtwoord + "'";
             // is onveilig, SQL injection > parameterize query.
-            string query = "SELECT * FROM [User] WHERE (username=@username AND password=@password COLLATE SQL_Latin1_General_CP1_CS_AS)";
+            string query = "SELECT * FROM [User] WHERE (username=@username AND password=@password)";
 
             con.Open();
 

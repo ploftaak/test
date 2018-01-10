@@ -14,37 +14,37 @@ namespace Escaperoom
     public partial class Scenario : Form
     {
         ConnectieDB database = new ConnectieDB();
-        Login loginform;
+        Login loginForm;
 
         public Scenario(Login login)
         {
             InitializeComponent();
-            loginform = login;
+            loginForm = login;
         }
 
         private void Scenario_Load(object sender, EventArgs e)
         {
             foreach (DataRow scenario in database.GetScenario().Rows)
             {
-                comboBoxScenarios.Items.Add(scenario["Scenarionaam"]);
+                comboBoxScenario.Items.Add(scenario["Scenarionaam"]);
             }           
         }
 
         private void ButtonSelecteerScenario_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Groepmaker groepmaker = new Groepmaker(this);
-            groepmaker.ShowDialog();
+            Groepmaker groepmakerForm = new Groepmaker(this);
+            groepmakerForm.ShowDialog();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxScenario_SelectedIndexChanged(object sender, EventArgs e)
         {
-            richTextBox1.Text = database.GetBeschrijving(comboBoxScenarios.SelectedItem.ToString());
+            richTextBoxScenarioBeschrijving.Text = database.GetBeschrijving(comboBoxScenario.SelectedItem.ToString());
         }
 
         private void Scenario_FormClosed(object sender, FormClosedEventArgs e)
         {
-            loginform.Show();
+            loginForm.Show();
         }
     }
 }

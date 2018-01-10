@@ -26,10 +26,10 @@ namespace Escaperoom
             scenarioForm = scenario;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ButtonVoegDeelnemerToe_Click(object sender, EventArgs e)
         {
             // leerling toevoegen
-            string name = deelnemerBox.Text;
+            string name = textBoxDeelnemer.Text;
             database.AddLeerling(name);
             
             // leerling toevoegen aan groep
@@ -38,22 +38,22 @@ namespace Escaperoom
             // get_leerlingen();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void ButtonVerwijderDeelnemer_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex == -1)
+            if (listBoxDeelnemers.SelectedIndex == -1)
             {
                 MessageBox.Show("Er is geen deelnemer geselecteerd om te verwijderen.");
             }
             else
             {
-                groep1.Remove(listBox1.SelectedItem.ToString());
-                listBox1.Items.Remove(listBox1.SelectedItem); 
+                groep1.Remove(listBoxDeelnemers.SelectedItem.ToString());
+                listBoxDeelnemers.Items.Remove(listBoxDeelnemers.SelectedItem); 
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void ButtonMaakGroep_Click(object sender, EventArgs e)
         {
-            int groepId = database.AddGroep(groepnaamBox.Text);
+            int groepId = database.AddGroep(textBoxGroepsnaam.Text);
             if (groepId != -1)
             {
                 this.groep_id = groepId;
@@ -64,9 +64,9 @@ namespace Escaperoom
                         database.AddLeerling(naam);
                     }
 
-                    groepnaamBox.Clear();
-                    deelnemerBox.Clear();
-                    listBox1.Items.Clear();
+                    textBoxGroepsnaam.Clear();
+                    textBoxDeelnemer.Clear();
+                    listBoxDeelnemers.Items.Clear();
                     MessageBox.Show("Groep aangemaakt!");
                     this.Hide();
                 }
@@ -83,20 +83,7 @@ namespace Escaperoom
        
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            Groeplijst lijstGroepen = new Groeplijst();
-            lijstGroepen.ShowDialog();
-            //Groep groep = lijstGroepen.groep;            
-
-            this.groep_id = lijstGroepen.id;
-            string selectedNaam = lijstGroepen.item;
-            groepnaamBox.Text = selectedNaam;
-
-            get_leerlingen();
-        }
-
-        private void get_leerlingen()
+        private void Get_leerlingen()
         {
             if(groep_id.ToString() == "" )
             {
@@ -106,14 +93,27 @@ namespace Escaperoom
             else
             {
                 List<Leerling> LeerlingenLijst = database.GetLeerlingenLijst(this.groep_id);
-                listBox1.DataSource = new BindingSource(LeerlingenLijst, null);
-                listBox1.DisplayMember = "Naam";
+                listBoxDeelnemers.DataSource = new BindingSource(LeerlingenLijst, null);
+                listBoxDeelnemers.DisplayMember = "Naam";
             }
         }
 
         private void Groepmaker_FormClosed(object sender, FormClosedEventArgs e)
         {
             scenarioForm.Show();
+        }
+
+        private void ButtonKiesBestaandeGroep_Click(object sender, EventArgs e)
+        {
+            Groeplijst lijstGroepen = new Groeplijst();
+            lijstGroepen.ShowDialog();
+            //Groep groep = lijstGroepen.groep;            
+
+            this.groep_id = lijstGroepen.id;
+            string selectedNaam = lijstGroepen.item;
+            textBoxGroepsnaam.Text = selectedNaam;
+
+            Get_leerlingen();
         }
     }
 }

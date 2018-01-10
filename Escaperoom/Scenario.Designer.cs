@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBoxScenarios = new System.Windows.Forms.ComboBox();
+            this.comboBoxScenario = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonSelecteerScenario = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxScenarioBeschrijving = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // comboBoxScenarios
+            // comboBoxScenario
             // 
-            this.comboBoxScenarios.FormattingEnabled = true;
-            this.comboBoxScenarios.Location = new System.Drawing.Point(9, 30);
-            this.comboBoxScenarios.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBoxScenarios.Name = "comboBoxScenarios";
-            this.comboBoxScenarios.Size = new System.Drawing.Size(290, 21);
-            this.comboBoxScenarios.TabIndex = 0;
-            this.comboBoxScenarios.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxScenario.FormattingEnabled = true;
+            this.comboBoxScenario.Location = new System.Drawing.Point(9, 30);
+            this.comboBoxScenario.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxScenario.Name = "comboBoxScenario";
+            this.comboBoxScenario.Size = new System.Drawing.Size(290, 21);
+            this.comboBoxScenario.TabIndex = 0;
+            this.comboBoxScenario.SelectedIndexChanged += new System.EventHandler(this.ComboBoxScenario_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -68,13 +68,13 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(9, 80);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(290, 218);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
+            this.richTextBoxScenarioBeschrijving.Location = new System.Drawing.Point(9, 80);
+            this.richTextBoxScenarioBeschrijving.Margin = new System.Windows.Forms.Padding(2);
+            this.richTextBoxScenarioBeschrijving.Name = "richTextBox1";
+            this.richTextBoxScenarioBeschrijving.ReadOnly = true;
+            this.richTextBoxScenarioBeschrijving.Size = new System.Drawing.Size(290, 218);
+            this.richTextBoxScenarioBeschrijving.TabIndex = 3;
+            this.richTextBoxScenarioBeschrijving.Text = "";
             // 
             // label2
             // 
@@ -92,10 +92,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(308, 375);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.richTextBoxScenarioBeschrijving);
             this.Controls.Add(this.buttonSelecteerScenario);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBoxScenarios);
+            this.Controls.Add(this.comboBoxScenario);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Scenario";
             this.Text = "Scenario";
@@ -108,10 +108,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBoxScenarios;
+        private System.Windows.Forms.ComboBox comboBoxScenario;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonSelecteerScenario;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxScenarioBeschrijving;
         private System.Windows.Forms.Label label2;
     }
 }
