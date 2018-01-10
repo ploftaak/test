@@ -12,7 +12,8 @@ namespace Escaperoom.Classes
     class ConnectieDB
     {
         //Connectie maken met database.
-        private static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Proftaak2\Escaperoom\Escaperoom\Escaperoom\Database1.mdf;Integrated Security=True";
+        //AttachDbFilename=" + Application.StartupPath + @"\crypto
+        private static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Application.StartupPath + @"\Database1.mdf;Integrated Security=True";
         private SqlConnection con = new SqlConnection(connectionString);
 
         public int inlogcheck(string username, string password)

@@ -13,7 +13,9 @@ namespace Escaperoom
 {
     public partial class Login : Form
     {
-        ConnectieDB login = new ConnectieDB();
+        ConnectieDB Db = new ConnectieDB();
+
+ 
 
         public Login()
         {
@@ -25,9 +27,9 @@ namespace Escaperoom
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ButtonLogin_Click(object sender, EventArgs e)
         {
-            if (login.inlogcheck(textBox1.Text, textBox2.Text) == 0)
+            if (Db.inlogcheck(textBoxUsername.Text, textBoxPassword.Text) == 0)
             {
                 MessageBox.Show("Fout");
             }
@@ -38,7 +40,13 @@ namespace Escaperoom
                 Login.Password = textBox2.Text;
                 */
                 this.Hide();
-                Scenario form2 = new Scenario();
+
+                textBoxUsername.Clear();
+                textBoxPassword.Clear();
+
+                ActiveControl = textBoxUsername;
+
+                Scenario form2 = new Scenario(this);
                 form2.ShowDialog();
 
             }

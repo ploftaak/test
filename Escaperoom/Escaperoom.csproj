@@ -68,11 +68,11 @@
       <DependentUpon>Gameinterface.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Groep.cs" />
-    <Compile Include="Groepen_koppelen.cs">
+    <Compile Include="Groepmaker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Groepen_koppelen.Designer.cs">
-      <DependentUpon>Groepen_koppelen.cs</DependentUpon>
+    <Compile Include="Groepmaker.Designer.cs">
+      <DependentUpon>Groepmaker.cs</DependentUpon>
     </Compile>
     <Compile Include="Groeplijst.cs">
       <SubType>Form</SubType>
@@ -98,8 +98,8 @@
     <EmbeddedResource Include="Gameinterface.resx">
       <DependentUpon>Gameinterface.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Groepen_koppelen.resx">
-      <DependentUpon>Groepen_koppelen.cs</DependentUpon>
+    <EmbeddedResource Include="Groepmaker.resx">
+      <DependentUpon>Groepmaker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Groeplijst.resx">
       <DependentUpon>Groeplijst.cs</DependentUpon>
